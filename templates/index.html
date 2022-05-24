@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block main %}
+    <script>
+        $(document).ready(function(){
+            $('#id_link_orig').focus();
+            $('#create_short').submit(function(event){
+              event.preventDefault();
+              var msg = $('#create_short').serialize();
+              $.ajax({
+                  type: 'POST',
+                  dataType: 'json',
+                  url: 'add_short_link/',
+                  data: msg,
+                  success: function(data) {
+                      if (data.state == undefined){
+                          if ($('.data_error').length){
+                              $('.data_error').removeClass('data_error');
+                          }
+                          var items = [];
+                          $.each(data, function(key, val){
+                              $('#id_' + key).toggleClass('data_error');
+                              items.push('<li class=\"error_msg\">' + val + '</li>')
+                          });
+                          $('#errormsg').html(items.join(''));
+                      }
+                      else {
+                          window.location = data.state;
+                      }
+                  },
+                  error: function(xhr, str){
+                      console.log('some errors: ' + xhr.responseCode);
+                  }
+              });
+          });
+        });
+    </script>
+
+    <div id="create_urls">
+        <form id="create_short" class="create_short">
+            <fieldset>
+                <legend>Создать короткую ссылку</legend>
+                <ul id="errormsg"></ul>
+                {% csrf_token %}
+                {% for field in form %}
+                    {{ field }}
+                {% endfor %}
+                <input type="submit" value="Создать">
+            </fieldset>
+        </form>
+    </div>
+    <h1>ТОП 20 коротких ссылок</h1>
+    {% include 'partials/_table.html'%}
+{% endblock %}

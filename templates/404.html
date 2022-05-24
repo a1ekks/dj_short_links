@@ -1,0 +1,30 @@
+{% load staticfiles %}
+{% load customs %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>404</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <div id="menu" class="menu">
+            <ul>
+                <li><a class="menuBtn {% current request "^/$" %}" href="/">Главная</a></li>
+                <li><a class="menuBtn {% current request "^/list/$" %}" href="/list">Список ссылок</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="main">
+        <p><span style="color: red;">Error</span> <span style="color: blue;">404</span></p>
+        <p>Страница не найдена, она не существует или более недоступна.</p>
+    </div>
+    <div class="footer">
+        <hr>
+        <p>&copy; 2017</p>
+    </div>
+</div>
+</body>
+</html>

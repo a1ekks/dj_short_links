@@ -1,0 +1,31 @@
+    <script type="text/javascript" language="javascript" class="init">
+	$(document).ready(function() {
+		$('#links').dataTable({
+		    "order": []
+        });
+	});
+    </script>
+    <table id="links" class="display cell-border">
+	<thead>
+		<tr>
+			<th>Ссылка</th>
+			<th>Короткая ссылка</th>
+			<th>Дата добавления</th>
+			<th>Кол-во переходов</th>
+            <th>Общая информация</th>
+            <th>Действия</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for link in links %}
+			<tr>
+                <td><a target="_blank" href="{{ link.link_orig }}">{{ link.link_orig }}</a></td>
+                <td><a target="_blank" href="http://{{ request.META.HTTP_HOST }}/{{ link.link_short }}">http://{{ request.META.HTTP_HOST }}/{{ link.link_short }}</a></td>
+                <td>{{ link.created }}</td>
+                <td>{{ link.use }}</td>
+                <td><a target="_blank" href="/url_info/{{ link.id }}">Показать</a></td>
+                <td><a href="/del_short_link/{{ link.id }}">Удалить</a></td>
+			</tr>
+		{% endfor %}
+	</tbody>
+    </table>

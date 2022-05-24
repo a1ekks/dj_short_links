@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block main %}
+    <h1>Информация по короткой ссылке</h1>
+    <table class="url_info">
+        <tr><td>Оригинальная ссылка:</td><td><a target="_blank" href="{{ cur_url.link_orig }}">{{ cur_url.link_orig }}</a></td></tr>
+        <tr><td>Короткая ссылка:</td><td><a target="_blank" href="http://{{ request.META.HTTP_HOST }}/{{ cur_url.link_short }}">http://{{ request.META.HTTP_HOST }}/{{ cur_url.link_short }}</a></td></tr>
+        <tr><td>Время создания:</td><td>{{ cur_url.created }}</td></tr>
+        <tr><td>Количество переходов:</td><td>{{ cur_url.use }}</td></tr>
+    </table>
+{% endblock %}

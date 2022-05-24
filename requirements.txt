@@ -1,0 +1,5 @@
+django>=1.11.19
+argparse==1.2.1
+psycopg2==2.7.1
+simplejson==3.10.0
+wsgiref==0.1.2
