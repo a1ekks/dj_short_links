@@ -1,6 +1,7 @@
 **Project Installation Steps**
-```
 ### Django short links example (OLD python2.7)
+
+```
 sudo apt-get install virtualenvwrapper python-all-dev postgresql-server-dev-all postgresql
 
 git clone https://github.com/e1teck/dj_short_links.git
